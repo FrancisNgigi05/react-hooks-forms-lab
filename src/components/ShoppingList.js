@@ -3,19 +3,14 @@ import ItemForm from "./ItemForm";
 import Filter from "./Filter";
 import Item from "./Item";
 
-function ShoppingList({ items }) {
+function ShoppingList({ items, onItemFormSubmit }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [filterText, setFilterText] = useState("");
-  const [goods, setGoods] = useState(items);
 
   function handleCategoryChange(event) {
     setSelectedCategory(event.target.value);
   }
-
-  const onItemFormSubmit = (obj) => {
-    setGoods([...goods,obj]);
-  }
-  const itemsToDisplay = goods.filter((item) => {
+  const itemsToDisplay = items.filter((item) => {
     if (selectedCategory === "All") return true;
 
     return item.category === selectedCategory;
